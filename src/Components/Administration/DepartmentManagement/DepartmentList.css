@@ -1,0 +1,63 @@
+.department-list {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.department-list h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.department-list .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 10px 5px;
+}
+
+.department-list .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.department-list .btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.department-list .btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.department-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.department-list table th,
+.department-list table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.department-list table th {
+  background-color: #f2f2f2;
+}
+
+.department-list table td {
+  background-color: #fff;
+}
+
+.department-list table tr:hover td {
+  background-color: #e9ecef;
+}

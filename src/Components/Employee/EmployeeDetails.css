@@ -1,0 +1,78 @@
+.employee-details-container {
+    margin-left: 160px; /* Assuming the sidebar width is 150px + some margin */
+    padding: 10px;
+    max-width: calc(100% - 160px); /* Adjust according to the sidebar width */
+  }
+  
+  /* Adjust the table to fit within a fixed height container */
+  .employee-details-table-container {
+    max-height: 400px; /* Adjust the height as needed to show 5-6 rows */
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .employee-details-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .employee-details-table-container th,
+  .employee-details-table-container td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd; /* Add vertical lines between columns */
+  }
+  
+  .employee-details-table-container th {
+    background-color: #f2f2f2;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Ensure the header stays on top */
+  }
+  
+  .employee-details-table-container td:last-child,
+  .employee-details-table-container th:last-child {
+    border-right: none; /* Remove border on the last column */
+  }
+  
+  /* Set specific widths for columns that need more space */
+  th.wide-column {
+    width: 120px; /* Adjust this value as needed */
+  }
+  
+  th.wider-column {
+    width: 200px; /* Adjust this value as needed */
+  }
+  
+  /* Styles for the Add Employee button */
+  .add-employee-button-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .add-employee-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #64919e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-employee-button:hover {
+    background-color: #07e3eb;
+  }
+  
+  .add-employee-button .icon {
+    margin-right: 10px;
+  }
+  
+  .add-employee-button .text {
+    font-size: 1rem;
+  }
+  

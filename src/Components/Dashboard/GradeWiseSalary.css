@@ -1,0 +1,32 @@
+.grade-wise-salary-card {
+  border: 2px solid #64919e;
+  border-radius: 8px;
+  margin: 37px;
+  padding: 15px;
+  background-color: #f1f4f5;
+  height: 390px; /* Increased height for better fit */
+  width: 735px; /* Increased width for better fit */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out elements */
+  margin-left: auto; /* Align to the right */
+  position: relative;
+  top:200px;
+  left:304px;
+  margin: 2px;
+}
+
+.grade-wise-salary-card h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #64919e;
+}
+
+.description {
+  font-size: 3 rem;
+  color: #64919e;
+}
+
+.graph-container {
+  height: 250px; /* Increased height for the graph */
+}

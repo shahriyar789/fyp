@@ -1,0 +1,64 @@
+.role-list {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .role-list h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .role-list .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 10px 5px;
+  }
+  
+  .role-list .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .role-list .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+  }
+  
+  .role-list .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .role-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .role-list table th,
+  .role-list table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .role-list table th {
+    background-color: #f2f2f2;
+  }
+  
+  .role-list table td {
+    background-color: #fff;
+  }
+  
+  .role-list table tr:hover td {
+    background-color: #e9ecef;
+  }
+  

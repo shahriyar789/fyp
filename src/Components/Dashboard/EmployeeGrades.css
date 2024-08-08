@@ -1,0 +1,81 @@
+.employee-grades-container {
+    background-color: #f1f4f5; /* Container background color */
+    padding: 22px;
+    border-radius: 8px;
+    border: 2px solid #64919e;
+    box-shadow: 0 2px 4px #64919e;
+    width: 420px; /* Adjust as needed */
+    position: absolute;
+    top: 325px; /* Adjust based on the height of the component above */
+    left: 361px;
+    transform: translateX(-50%);
+    margin-left: 15px;
+    margin-top: 2px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    margin: 0;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 0.7rem; /* Smaller font size for the subtitle */
+    color: #64919e;
+}
+
+.grade-dropdown {
+    margin-left: auto;
+    padding: 5px;
+    border: 1px solid #64919e;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #64919e;
+}
+
+.employee-grades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: start; /* Align items to the left */
+}
+
+.grade-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc((100% / 3) - 10px); /* 3 items per row with gap consideration */
+    box-sizing: border-box;
+}
+
+.grade-box {
+    background-color: #ffffff; /* White background for each grade box */
+    border: 1px solid #64919e;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.grade-box h3 {
+    margin: 10px;
+    font-size: 0.8em;
+    color: #64919e;
+}
+
+.employee-count {
+    margin: 10px 0 0;
+    font-size: 1rem; /* Make the number of employees more prominent */
+    color: #64919e;
+}
