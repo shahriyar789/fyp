@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
 import '../LoginForm/LoginRegisterForm.css';
 import { FaLock } from "react-icons/fa";
-import { MdEmail } from "react-icons/md"
+import { MdEmail } from "react-icons/md";
+import axios from 'axios';
 
-const Signup = ({ onSignup }) => {
+const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
-            // Handle signup logic here
-            onSignup({ email, password });
+            // Handle signup logic here   
+            try {
+                const res = await axios.post("/api/auth/signup", { email, password, confirmPassword });
+                console.log(res.data);
+              } catch (error) {
+                console.error("Signup failed:", error.response ? error.response.data : error.message);
+              }
         } else {
             alert("Passwords do not match!");
-        }
+        };
+        console.log(email, password);
     };
 
     return (
