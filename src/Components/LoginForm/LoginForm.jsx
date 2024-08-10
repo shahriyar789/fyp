@@ -21,7 +21,7 @@ function LoginForm() {
     // Handle login logic here
     console.log('Logging in with:', { email, password });
   };
-
+   
   // Function to toggle password visibility
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
