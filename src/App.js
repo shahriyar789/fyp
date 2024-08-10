@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import LoginForm from './Components/LoginForm/LoginForm';
-import Register from './Components/LoginForm/Register'
+// import Register from './Components/LoginForm/Register'
 // import Navbar from './Components/Navbar';
 // import Sidebar from './Components/Sidebar';
 // import Attendance from './Components/Attendance/Attendance'
