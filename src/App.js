@@ -1,9 +1,8 @@
 import './App.css';
 // index.js or App.js
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-import LoginForm from './Components/LoginForm/LoginForm';
-// import Register from './Components/LoginForm/Register'
+// import LoginForm from './Components/LoginForm/LoginForm';
+import Register from './Components/LoginForm/Register'
 // import Navbar from './Components/Navbar';
 // import Sidebar from './Components/Sidebar';
 // import Attendance from './Components/Attendance/Attendance'
