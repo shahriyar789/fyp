@@ -2,7 +2,6 @@ import './App.css';
 // index.js or App.js
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import EmployeeDetails from './Components/Employee/EmployeeDetails';
 import LoginForm from './Components/LoginForm/LoginForm';
 // import Register from './Components/LoginForm/Register'
 // import Navbar from './Components/Navbar';
@@ -18,8 +17,20 @@ import LoginForm from './Components/LoginForm/LoginForm';
 // import PayrollDashboard from './Components/Payroll/PayrollDashboard';
 // import IncentivesAndBonusesDetails from './Components/Payroll/IncentivesAndBonusesDetails';
 // import Report from './Components/Report';
+// import EmployeeDetails from './Components/Employee/EmployeeDetails';
 // import ShadowContainer from './Components/Employee/ShadowContainer';
-// import AddDepartmentButton from './Components/Employee/AddDepartmentButton';
+// import AddDepartmentButton from './Components/Employee/AddDepartment';
+// import Settings from './components/Settings/Settings';
+
+
+// import AdminPage from './Components/Administration/AdminPage';
+// import DepartmentList from './Components/Administration/DepartmentManagement/DepartmentList';
+// import AddDepartment from './Components/Administration/DepartmentManagement/AddDepartment';
+// import RoleList from './Components/Administration/RoleManagement/RoleList';
+// import AllowanceList from './Components/Administration/Allowances/AllowanceList';
+// import DeductionList from './Components/Administration/Deduction/DeductionList';
+
+
 // const gradesData = [
 //     { numberOfEmployees: 10 },
 //     { numberOfEmployees: 15 },
@@ -37,9 +48,9 @@ function App() {
   return (
 <>
 
+   {/* <Sidebar/> */}
 
    {/* <Navbar title='PAYROLL'/> */}
-{/* <Sidebar/> */}
 {/* <Attendance/> */}
 {/* <Employee/>
 
@@ -50,22 +61,32 @@ function App() {
 
 {/* <Router>
       <div className="app-container">
-        <Routes>
-           <Route path="/" element={<GenerateSalary />} />
-          <Route path="/salary-list" element={<SalaryList />} />
-          <Route path="/salary-details/:id" element={<SalaryDetails />} />
+      {/* <Route path="/" element={<GenerateSalary />} />
+      <Route path="/salary-list" element={<SalaryList />} />
+      <Route path="/salary-details/:id" element={<SalaryDetails />} />
           <Route path="/payroll-dashboard" element={<PayrollDashboard />} />
-          <Route path="/incentives-bonuses-details" element={<IncentivesAndBonusesDetails />} />
-             <Route path="/admin/*" element={<AdminPage />} />
-         
-        </Routes>
+          <Route path="/incentives-bonuses-details" element={<IncentivesAndBonusesDetails />} /> */}
+             {/* <Route path="/admin/*" element={<AdminPage />} /> */}
+             {/* <Routes>
+                <Route path="/" element={<AdminPage />} />
+                <Route path="/departments" element={<DepartmentList />} />
+                <Route path="/departments/add" element={<AddDepartment />} />
+                <Route path="/users" element={<UserList />} />
+                <Route path="/users/add" element={<AddUser />} />
+                <Route path="/roles" element={<RoleList />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/allowances" element={<AllowanceList />} />
+                <Route path="/deductions" element={<DeductionList />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        
       </div>
     
     </Router> */}
 
 
 
-{/* <AddDepartmentButton/> */} 
+{/* <AddDepartmentButton/>  */}
  {/* <ShadowContainer/>  */}
 {/* <EmployeeDetails/> */}
 
@@ -76,7 +97,7 @@ function App() {
 
 {/* <Nav/> */}
 {/* <Report/> */}
-  <LoginForm/> 
+  <LoginForm/>  
   {/* {/* <Register/>   */}
 </>
   );

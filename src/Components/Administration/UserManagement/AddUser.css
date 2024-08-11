@@ -1,0 +1,41 @@
+.add-edit-user {
+    padding: 20px;
+}
+
+.add-edit-user h2 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.add-edit-user form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-edit-user label {
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.add-edit-user input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-edit-user button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+.add-edit-user button:hover {
+    background-color: #218838;
+}

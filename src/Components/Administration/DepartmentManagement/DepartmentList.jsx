@@ -1,52 +1,55 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './DepartmentList.css';
+import { Link } from 'react-router-dom';
 
 const DepartmentList = () => {
-  const [departments, setDepartments] = useState([]);
+    const [departments, setDepartments] = useState([
+        { id: 1, name: 'Human Resources', employees: 10 },
+        { id: 2, name: 'Finance', employees: 8 },
+        { id: 3, name: 'Engineering', employees: 25 },
+        { id: 4, name: 'Marketing', employees: 15 }
+    ]);
 
-  useEffect(() => {
-    fetchDepartments();
-  }, []);
+    useEffect(() => {
+        const storedDepartments = JSON.parse(localStorage.getItem('departments'));
+        if (storedDepartments) {
+            setDepartments(storedDepartments);
+        }
+    }, []);
 
-  const fetchDepartments = async () => {
-    // Replace with your API call
-    const response = await fetch('/api/departments');
-    const data = await response.json();
-    setDepartments(data);
-  };
+    const handleDelete = (id) => {
+        const updatedDepartments = departments.filter(dept => dept.id !== id);
+        setDepartments(updatedDepartments);
+        localStorage.setItem('departments', JSON.stringify(updatedDepartments));
+    };
 
-  const handleDelete = async (id) => {
-    // Replace with your API call
-    await fetch(`/api/departments/${id}`, { method: 'DELETE' });
-    fetchDepartments();
-  };
-
-  return (
-    <div className="department-list">
-      <h2>Department List</h2>
-      <Link to="/admin/departments/add" className="btn btn-primary">Add Department</Link>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {departments.map(department => (
-            <tr key={department.id}>
-              <td>{department.name}</td>
-              <td>
-                <Link to={`/admin/departments/edit/${department.id}`} className="btn btn-secondary">Edit</Link>
-                <button onClick={() => handleDelete(department.id)} className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    return (
+        <div className="department-list-container">
+            <h2>Manage Departments</h2>
+            <table className="department-table">
+                <thead>
+                    <tr>
+                        <th>Department Name</th>
+                        <th>Number of Employees</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {departments.map(department => (
+                        <tr key={department.id}>
+                            <td>{department.name}</td>
+                            <td>{department.employees}</td>
+                            <td className="department-actions">
+                                <Link to={`/departments/edit/${department.id}`} className="edit-button">Edit</Link>
+                                <button className="delete-button" onClick={() => handleDelete(department.id)}>Delete</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <Link to="/departments/add" className="add-department-button">Add Department</Link>
+        </div>
+    );
 };
 
 export default DepartmentList;

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ShadowContainer from './ShadowContainer';
 import './EmployeeDetails.css';
-import { FaUserPlus } from 'react-icons/fa';
-import AddDepartment from './AddDepartment'
-import AddNewGrade from './AddNewGrade';
+import { FaUserPlus, FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const EmployeeDetails = () => {
   const [employees, setEmployees] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [editingEmployee, setEditingEmployee] = useState(null);
 
   useEffect(() => {
     // Simulated data fetch
@@ -36,66 +35,142 @@ const EmployeeDetails = () => {
         dateOfJoining: "2019-03-15",
         address: "456 Elm St, Anytown"
       },
-      {
-        id: 3,
-        firstName: "Alice",
-        lastName: "Johnson",
-        dateOfBirth: "1992-12-11",
-        departmentName: "IT",
-        grade: "C",
-        phoneNumber: "+1122334455",
-        email: "alice.johnson@example.com",
-        dateOfJoining: "2018-06-30",
-        address: "789 Pine St, Anytown"
+        {
+        id: 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        address: "456 Elm St, Anytown"
       },
       {
-        id: 4,
-        firstName: "Bob",
-        lastName: "Brown",
-        dateOfBirth: "1988-09-05",
-        departmentName: "Sales",
-        grade: "D",
-        phoneNumber: "+1223344556",
-        email: "bob.brown@example.com",
-        dateOfJoining: "2017-04-20",
-        address: "101 Maple St, Anytown"
+        id: 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        address: "456 Elm St, Anytown"
       },
       {
-        id: 5,
-        firstName: "Charlie",
-        lastName: "Davis",
-        dateOfBirth: "1993-08-15",
+        id: 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        address: "456 Elm St, Anytown"
+      },
+      {
+        id: 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        address: "456 Elm St, Anytown"
+      },
+      {
+        id: 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        address: "456 Elm St, Anytown"
+      },
+      {
+        id: 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        address: "456 Elm St, Anytown"
+      },
+      {
+        id: 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        address: "456 Elm St, Anytown"
+      },
+      {
+        id: 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        address: "456 Elm St, Anytown"
+      },
       
-        departmentName: "Marketing",
-        grade: "E",
-        phoneNumber: "+1334455667",
-        email: "charlie.davis@example.com",
-        dateOfJoining: "2016-02-10",
-        address: "202 Oak St, Anytown"
-      },
-      {
-        id: 6,
-        firstName: "Eve",
-        lastName: "Miller",
-        dateOfBirth: "1991-05-23",
-        departmentName: "Operations",
-        grade: "F",
-        phoneNumber: "+1445566778",
-        email: "eve.miller@example.com",
-        dateOfJoining: "2015-11-01",
-        address: "303 Birch St, Anytown"
-      },
       // Add more employee data as needed
     ];
     setEmployees(fetchedData);
   }, []);
 
   const handleAddEmployeeClick = () => {
+    setEditingEmployee(null);
     setShowForm(true);
+  };
+
+  const handleEditClick = (employee) => {
+    setEditingEmployee(employee);
+    setShowForm(true);
+  };
+
+  const handleDeleteClick = (id) => {
+    setEmployees(employees.filter(employee => employee.id !== id));
+  };
+
+  const handleFormSubmit = (newEmployee) => {
+    if (editingEmployee) {
+      setEmployees(employees.map(emp => emp.id === newEmployee.id ? newEmployee : emp));
+    } else {
+      setEmployees([...employees, { ...newEmployee, id: employees.length + 1 }]);
+    }
+    setShowForm(false);
   };
 
   return (
     <div className="employee-details-container">
+      <div style={{display:"flex"}}>
+      <h1 className="heading">Employee Details</h1>
+      <div className="add-employee-button-container">
+        <div className="add-employee-button" onClick={handleAddEmployeeClick}>
+          <FaUserPlus className="icon" />
+          <span className="text">Add New Employee</span>
+        </div>
+      </div>
+      </div>
       <div className="employee-details-table-container">
         <table>
           <thead>
@@ -103,13 +178,14 @@ const EmployeeDetails = () => {
               <th>ID</th>
               <th style={{width:'250px'}}>First Name</th>
               <th style={{width:'200px'}}>Last Name</th>
-              <th style={{width:'300px'}}>Date of Birth</th>
+              <th style={{width:'350px'}}>Date of Birth</th>
               <th className="wide-column">Department</th>
               <th className="wide-column">Grade</th>
               <th style={{width:'200px'}}>Phone Number</th>
               <th className="wide-column">Email</th>
               <th style={{width:'350px'}}>Date of Joining</th>
-              <th className="wider-column">Address</th>
+              <th className="wider-column" style={{width:'500px'}}>Address</th>
+              <th style={{width:'150px'}}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -126,6 +202,18 @@ const EmployeeDetails = () => {
                   <td>{employee.email}</td>
                   <td>{employee.dateOfJoining}</td>
                   <td>{employee.address}</td>
+                  <td>
+                    <div className="action-icons">
+                      <FaEdit 
+                        className="action-icon edit-icon" 
+                        onClick={() => handleEditClick(employee)} 
+                      />
+                      <FaTrashAlt 
+                        className="action-icon delete-icon" 
+                        onClick={() => handleDeleteClick(employee.id)} 
+                      />
+                    </div>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -135,16 +223,9 @@ const EmployeeDetails = () => {
             )}
           </tbody>
         </table>
-      </div>
-      <div className="add-employee-button-container">
-        <div className="add-employee-button" onClick={handleAddEmployeeClick}>
-          <FaUserPlus className="icon" />
-          <span className="text">Add New Employee</span>
-        </div>
-      </div>
-      {showForm && <ShadowContainer />}
-      <AddDepartment />
-      <AddNewGrade/>
+      </div>     
+     
+      {showForm && <ShadowContainer employee={editingEmployee} onSubmit={handleFormSubmit} />}
     </div>
   );
 };

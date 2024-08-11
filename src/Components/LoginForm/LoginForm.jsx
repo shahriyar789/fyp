@@ -1,68 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './LoginForm.css';
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 function LoginForm() {
-  // State variables for username, password, and rememberMe
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');  // Ensure this is an empty string
+  const [password, setPassword] = useState('');  // Ensure this is an empty string
   const [rememberMe, setRememberMe] = useState(false);
-
-  // useEffect to handle "Remember me" functionality
-  // This runs once when the component mounts
-  useEffect(() => {
-    // Check if a username is stored in localStorage
-    const rememberedUsername = localStorage.getItem('rememberedUsername');
-    if (rememberedUsername) {
-      // If a username is found, set the username state and check the "Remember me" checkbox
-      setUsername(rememberedUsername);
-      setRememberMe(true);
-    }
-  }, []);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Function to handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
 
-    // Store or remove the username in localStorage based on the "Remember me" checkbox
     if (rememberMe) {
-      localStorage.setItem('rememberedUsername', username);
+      localStorage.setItem('rememberedEmail', email);
     } else {
-      localStorage.removeItem('rememberedUsername');
+      localStorage.removeItem('rememberedEmail');
     }
 
     // Handle login logic here
-    console.log('Logging in with:', { username, password });
+    console.log('Logging in with:', { email, password });
+  };
+
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
     <div className='wrapper login-container'>
-      <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+      <h1>Welcome Back!</h1>
+      <form onSubmit={handleSubmit} autocomplete="off">
+        <h2>Login to Your Account</h2>
         <div className="input-box">
-          {/* Username input field */}
           <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            placeholder="Email"
+            value={email}  // This should be an empty string by default
+            onChange={(e) => setEmail(e.target.value)}
             required
+            autocomplete="off"  // Optional: discourages browser autofill
           />
-          <FaUserAlt className='icon' /> {/* User icon */}
+          <FaEnvelope className='icon' />
         </div>
         <div className="input-box">
-          {/* Password input field */}
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
-            value={password}
+            value={password}  // This should be an empty string by default
             onChange={(e) => setPassword(e.target.value)}
             required
+            autocomplete="off"  // Optional: discourages browser autofill
           />
-          <FaLock className='icon' /> {/* Lock icon */}
+          <FaLock className='icon' />
+          <span onClick={togglePasswordVisibility} className='password-toggle-icon'>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
         <div className="remember-forgot">
-          {/* Remember me checkbox */}
           <label>
             <input
               type="checkbox"
@@ -71,13 +66,10 @@ function LoginForm() {
             />
             Remember me
           </label>
-          {/* Forgot password link */}
           <a href="/">Forgot password?</a>
         </div>
-        {/* Login button */}
         <button type='submit'>Login</button>
         <div className="register-link">
-          {/* Link to register */}
           <p>Don't have an account? <a href="/">Register</a></p>
         </div>
       </form>

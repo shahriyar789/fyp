@@ -1,49 +1,58 @@
-import React, { useState } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
-import DepartmentList from './DepartmentManagement/DepartmentList';
-import DepartmentForm from './DepartmentManagement/DepartmentForm';
-import UserList from './UserManagement/UserList';
-import UserForm from './UserManagement/UserForm';
-import RoleList from './RoleManagement/RoleList';
-import RoleForm from './RoleManagement/RoleForm';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './AdminPage.css';
 
 const AdminPage = () => {
-  const [departments, setDepartments] = useState([
-    { id: 1, name: 'HR' },
-    { id: 2, name: 'Finance' },
-    { id: 3, name: 'IT' },
-  ]);
-
-  const [users, setUsers] = useState([
-    { id: 1, name: 'John Doe', role: 'Admin' },
-    { id: 2, name: 'Jane Smith', role: 'User' },
-  ]);
-
-  return (
-    <div className="admin-page">
-      <nav className="admin-nav">
-        <ul>
-          <li><Link to="/admin/departments">Department Management</Link></li>
-          <li><Link to="/admin/users">User Management</Link></li>
-          <li><Link to="/admin/roles">Role Management</Link></li>
-        </ul>
-      </nav>
-      <div className="admin-content">
-        <Routes>
-          <Route path="/departments" element={<DepartmentList departments={departments} setDepartments={setDepartments} />} />
-          <Route path="/departments/add" element={<DepartmentForm departments={departments} setDepartments={setDepartments} />} />
-          <Route path="/departments/edit/:id" element={<DepartmentForm departments={departments} setDepartments={setDepartments} />} />
-          <Route path="/users" element={<UserList users={users} setUsers={setUsers} />} />
-          <Route path="/users/add" element={<UserForm users={users} setUsers={setUsers} />} />
-          <Route path="/users/edit/:id" element={<UserForm users={users} setUsers={setUsers} />} />
-          <Route path="/roles" element={<RoleList />} />
-          <Route path="/roles/add" element={<RoleForm />} />
-          <Route path="/roles/edit/:id" element={<RoleForm />} />
-        </Routes>
-      </div>
-    </div>
-  );
+    return (
+        <div className="admin-page">
+            <div className="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <p>Manage all aspects of your application from a single place</p>
+            </div>
+            <div className="dashboard-grid">
+                <Link to="/departments" className="dashboard-card">
+                    <div className="card-icon">🏢</div>
+                    <h3>Manage Departments</h3>
+                    <p>View and edit department details</p>
+                </Link>
+                <Link to="/departments/add" className="dashboard-card">
+                    <div className="card-icon">➕</div>
+                    <h3>Add Department</h3>
+                    <p>Create a new department</p>
+                </Link>
+                <Link to="/users" className="dashboard-card">
+                    <div className="card-icon">👥</div>
+                    <h3>Manage Users</h3>
+                    <p>View and manage users</p>
+                </Link>
+                <Link to="/users/add" className="dashboard-card">
+                    <div className="card-icon">➕</div>
+                    <h3>Add User</h3>
+                    <p>Add a new user</p>
+                </Link>
+                <Link to="/roles" className="dashboard-card">
+                    <div className="card-icon">🛠️</div>
+                    <h3>Manage Roles</h3>
+                    <p>Assign and manage user roles</p>
+                </Link>
+                <Link to="/settings" className="dashboard-card">
+                    <div className="card-icon">⚙️</div>
+                    <h3>Settings</h3>
+                    <p>Configure application settings</p>
+                </Link>
+                <Link to="/allowances" className="dashboard-card">
+                    <div className="card-icon">💰</div>
+                    <h3>Manage Allowances</h3>
+                    <p>View and manage allowances</p>
+                </Link>
+                <Link to="/deductions" className="dashboard-card">
+                    <div className="card-icon">💸</div>
+                    <h3>Manage Deductions</h3>
+                    <p>View and manage deductions</p>
+                </Link>
+            </div>
+        </div>
+    );
 };
 
 export default AdminPage;

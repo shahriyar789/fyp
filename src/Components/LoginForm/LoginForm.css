@@ -1,76 +1,113 @@
 body {
-    /* background-image: url('../Assets/bg.jpg'); */
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(135deg, #293231 0%, #CAF0F8 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    width: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px; /* Add padding for small screens */
 }
 
 .wrapper {
-    width: 420px;
-    background: transparent;
-    border: 2px solid #64919e;
-    color:black;
-    border-radius: 10px;
-    padding: 30px 40px;
+    width: 400px;
+    background: #64919e; /* Darker, semi-transparent background */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Slightly darker shadow */
+    text-align: center;
+    cursor: pointer; /* Change cursor style over the entire wrapper */
+    transition: all 0.3s ease;
 }
 
 .wrapper h1 {
     font-size: 36px;
-    text-align: center;
+    margin-bottom: 10px;
+    color: #ffffff; /* Bright white text for contrast */
+    font-weight: 700;
+    cursor: default; /* Keep default cursor for text */
 }
 
-.wrapper .input-box {
+.wrapper h2 {
+    font-size: 22px;
+    margin-bottom: 30px;
+    color: #ffffff; /* Bright white text */
+    font-weight: 400;
+    cursor: default; /* Keep default cursor for text */
+}
+
+.input-box {
     position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 30px 0;
+    margin-bottom: 30px;
 }
 
 .input-box input {
     width: 100%;
-    height: 100%;
-    background: transparent;
+    height: 50px;
+    padding: 0 20px 0 50px;
+    background: rgba(255, 255, 255, 0.2);
     border: none;
-    outline: none;
-    border: 2px solid #64919e;
-    border-radius: 40px;
+    border-radius: 25px;
     font-size: 16px;
-    color: black;
-    padding: 20px 45px 20px 20px;
+    color: #ffffff; /* White text for inputs */
+    caret-color: #ffffff; /* White text cursor (caret) */
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: text; /* Text cursor for input fields */
+}
+
+.input-box input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    caret-color: #ffffff; /* Ensure white caret on focus */
 }
 
 .input-box input::placeholder {
-    color: black;
+    color: #e0e0e0; /* Lighter placeholder text */
 }
 
 .input-box .icon {
     position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.password-toggle-icon {
+    position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 16px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #ffffff;
 }
 
-.wrapper .remember-forgot {
+.remember-forgot {
     display: flex;
     justify-content: space-between;
     font-size: 14.5px;
-    margin: -15px 0 15px;
+    margin-bottom: 30px;
+    cursor: pointer; /* Pointer cursor for this section */
 }
 
 .remember-forgot label {
     display: flex;
     align-items: center;
+    color: #ffffff;
 }
 
 .remember-forgot input[type="checkbox"] {
-    margin-right: 10px; /* Adds space between the checkbox and the label */
+    margin-right: 10px;
+    cursor: pointer; /* Pointer cursor for checkbox */
 }
 
 .remember-forgot a {
-    color: #64919e;
+    color: #ffffff;
     text-decoration: none;
+    cursor: pointer; /* Pointer cursor for links */
 }
 
 .remember-forgot a:hover {
@@ -79,30 +116,120 @@ body {
 
 .wrapper button {
     width: 100%;
-    height: 45px;
-    background: #64919e;
+    height: 50px;
+    background: linear-gradient(135deg, #64919e 0%, #64919e 100%);
     border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     color: #333;
-    font-size: 16px;
-    cursor: pointer;
+    font-size: 18px;
     font-weight: 700;
+    cursor: pointer; /* Pointer cursor for the button */
+    transition: all 0.3s ease;
 }
 
-.wrapper .register-link {
+.wrapper button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+
+.register-link {
     font-size: 14.5px;
-    text-align: center;
-    margin: 20px 0 15px;
+    color: #ffffff;
+    margin-top: 20px;
+    cursor: pointer; /* Pointer cursor for links */
 }
 
 .register-link p a {
-    color: #64919e;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
 }
 
 .register-link p a:hover {
     text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .wrapper {
+        width: 100%;
+        max-width: 500px;
+        padding: 30px;
+    }
+
+    .wrapper h1 {
+        font-size: 30px;
+    }
+
+    .wrapper h2 {
+        font-size: 20px;
+    }
+
+    .input-box input {
+        height: 45px;
+        padding-left: 45px;
+    }
+
+    .input-box .icon {
+        font-size: 16px;
+    }
+
+    .password-toggle-icon {
+        font-size: 16px;
+    }
+
+    .wrapper button {
+        height: 45px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        padding: 20px;
+    }
+
+    .wrapper h1 {
+        font-size: 28px;
+    }
+
+    .wrapper h2 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .input-box {
+        margin-bottom: 20px;
+    }
+
+    .input-box input {
+        height: 40px;
+        padding-left: 40px;
+    }
+
+    .input-box .icon {
+        font-size: 14px;
+        left: 15px;
+    }
+
+    .password-toggle-icon {
+        font-size: 14px;
+        right: 15px;
+    }
+
+    .remember-forgot {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .wrapper button {
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .register-link {
+        font-size: 13px;
+        margin-top: 15px;
+    }
 }
