@@ -221,3 +221,9 @@ button:hover {
 .popup {
     animation: popup-appear 0.5s ease;
 }
+
+.error-message {
+    color: rgb(225, 20, 20);
+    margin-top: 5px;
+    font-size: 0.875rem; 
+}

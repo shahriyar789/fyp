@@ -1,31 +1,56 @@
-import React, { useState } from 'react';
-import './LoginRegisterForm.css';
-import EmailPopup from './EmailPopup';
-import OTPPopup from './OTPPopup';
-import NewPasswordPopup from './NewPasswordPopup';
+import React, { useEffect, useState } from "react";
+import "./LoginRegisterForm.css";
+import EmailPopup from "./EmailPopup";
+import OTPPopup from "./OTPPopup";
+import NewPasswordPopup from "./NewPasswordPopup";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 function LoginForm() {
-  const [email, setEmail] = useState('');  // Ensure this is an empty string
-  const [password, setPassword] = useState('');  // Ensure this is an empty string
+  const [email, setEmail] = useState(""); // Ensure this is an empty string
+  const [password, setPassword] = useState(""); // Ensure this is an empty string
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({});
   const [isEmailPopupOpen, setIsEmailPopupOpen] = useState(false);
   const [isOTPPopupOpen, setIsOTPPopupOpen] = useState(false);
   const [isNewPasswordPopupOpen, setIsNewPasswordPopupOpen] = useState(false);
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (rememberMe) {
       localStorage.setItem("rememberedEmail", email);
     } else {
       localStorage.removeItem("rememberedEmail");
     }
-
-    // Handle login logic here
-    console.log('Logging in with:', { email, password });
+    
+    try {
+      const res = await axios.post("/auth/login", { email, password });
+      console.log(res.data);
+    } catch (error) {
+      setEmail("");
+      setPassword("")
+      if (error.response && error.response.data) {
+        const errorData = error.response.data;
+        if (errorData.field) {
+          setErrors({ [errorData.field]: errorData.message });
+        }
+      }
+    }
   };
+
+  useEffect(() => {
+    if (email) {
+      setErrors(prevErrors => ({ ...prevErrors, email: "" }));
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (password) {
+      setErrors(prevErrors => ({ ...prevErrors, password: "" }));
+    }
+  }, [password]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -60,25 +85,27 @@ function LoginForm() {
       <h1>Welcome Back!</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
         <h2>Login to Your Account</h2>
+          {errors.email && <p className="error-message">{errors.email}</p>}
         <div className="input-box">
           <input
             type="email"
             placeholder="Email"
-            value={email}  // This should be an empty string by default
+            value={email} // This should be an empty string by default
             onChange={(e) => setEmail(e.target.value)}
             required
-            autocomplete="off"  // Optional: discourages browser autofill
+            autocomplete="off" // Optional: discourages browser autofill
           />
           <FaEnvelope className="icon" />
         </div>
+        {errors.password && <p className="error-message">{errors.password}</p>}
         <div className="input-box">
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
-            value={password}  // This should be an empty string by default
+            value={password} // This should be an empty string by default
             onChange={(e) => setPassword(e.target.value)}
             required
-            autocomplete="off"  // Optional: discourages browser autofill
+            autocomplete="off" // Optional: discourages browser autofill
           />
           <FaLock className="icon" />
           <span
@@ -97,7 +124,9 @@ function LoginForm() {
             />
             Remember me
           </label>
-          <a href="#!" onClick={openEmailPopup}>Forgot password?</a>
+          <a href="#!" onClick={openEmailPopup}>
+            Forgot password?
+          </a>
         </div>
         <button type="submit">Login</button>
         <div className="register-link">
@@ -107,9 +136,15 @@ function LoginForm() {
         </div>
       </form>
 
-      {isEmailPopupOpen && <EmailPopup onClose={closeEmailPopup} onNext={openOTPPopup} />}
-      {isOTPPopupOpen && <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} />}
-      {isNewPasswordPopupOpen && <NewPasswordPopup onClose={closeNewPasswordPopup} />}
+      {isEmailPopupOpen && (
+        <EmailPopup onClose={closeEmailPopup} onNext={openOTPPopup} />
+      )}
+      {isOTPPopupOpen && (
+        <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} />
+      )}
+      {isNewPasswordPopupOpen && (
+        <NewPasswordPopup onClose={closeNewPasswordPopup} />
+      )}
     </div>
   );
 }
