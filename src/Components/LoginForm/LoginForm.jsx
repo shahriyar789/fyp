@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import './LoginForm.css';
+import './LoginRegisterForm.css';
+import EmailPopup from './EmailPopup';
+import OTPPopup from './OTPPopup';
+import NewPasswordPopup from './NewPasswordPopup';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
 
 function LoginForm() {
   const [email, setEmail] = useState('');  // Ensure this is an empty string

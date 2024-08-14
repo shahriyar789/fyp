@@ -1,16 +1,16 @@
 import './App.css';
 // index.js or App.js
 
-// import LoginForm from './Components/LoginForm/LoginForm';
+import LoginForm from './Components/LoginForm/LoginForm';
 
 // import Register from './Components/LoginForm/Register'
 
-import Navbar from './Components/Navbar';
-import Sidebar from './Components/Sidebar';
+// import Navbar from './Components/Navbar';
+// import Sidebar from './Components/Sidebar';
 
-import Employee from './Components/Dashboard/Employees'
-import GradeWiseSalary from './Components/Dashboard/GradeWiseSalary';
-import EmployeeGrades from './Components/Dashboard/EmployeeGrades';
+// import Employee from './Components/Dashboard/Employees'
+// import GradeWiseSalary from './Components/Dashboard/GradeWiseSalary';
+// import EmployeeGrades from './Components/Dashboard/EmployeeGrades';
 
 
 // import EmployeeDetails from './Components/Employee/EmployeeDetails';
@@ -36,36 +36,36 @@ import EmployeeGrades from './Components/Dashboard/EmployeeGrades';
 // import DeductionList from './Components/Administration/Deduction/DeductionList';
 
 
-const gradesData = [
-    { numberOfEmployees: 10 },
-    { numberOfEmployees: 15 },
-    { numberOfEmployees: 20 },
-    { numberOfEmployees: 25 },
-    { numberOfEmployees: 30 },
-    { numberOfEmployees: 35 },
-    { numberOfEmployees: 40 },
-    { numberOfEmployees: 45 },
-    { numberOfEmployees: 50 }
-]
+// const gradesData = [
+//     { numberOfEmployees: 10 },
+//     { numberOfEmployees: 15 },
+//     { numberOfEmployees: 20 },
+//     { numberOfEmployees: 25 },
+//     { numberOfEmployees: 30 },
+//     { numberOfEmployees: 35 },
+//     { numberOfEmployees: 40 },
+//     { numberOfEmployees: 45 },
+//     { numberOfEmployees: 50 }
+// ]
 
 function App() {
   return (
 <>
 
-  {/* <LoginForm/>   */}
+  <LoginForm/>  
    {/* <Register/>   */}
-
+{/* 
    <Navbar title='PAYROLL'/>
    <Sidebar/>
- 
+  */}
  {/* //Dashboard */}
 
- 
+{/*  
   <Employee/>
   <GradeWiseSalary/>  
   <div className="app">
    <EmployeeGrades gradesData={gradesData} />
-  </div> 
+  </div>  */}
 
 {/* 
 
