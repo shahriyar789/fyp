@@ -19,7 +19,7 @@ const EmployeeGrades = ({ gradesData }) => {
                 {gradesData.map((grade, index) => (
                     <div key={index} className="grade-item">
                         <div className="grade-box">
-/                            <h3>Grade {index + 1}</h3>
+                          <h3>Grade {index + 1}</h3>
                         </div>
                         <p className="employee-count">{grade.numberOfEmployees}</p>
                     </div>

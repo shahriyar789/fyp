@@ -1,3 +1,4 @@
+/* LoginForm Styles */
 body {
     background: linear-gradient(135deg, #293231 0%, #CAF0F8 100%);
     display: flex;
@@ -6,34 +7,30 @@ body {
     height: 100vh;
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    padding: 20px; /* Add padding for small screens */
+    padding: 20px;
 }
 
 .wrapper {
     width: 400px;
-    background: #64919e; /* Darker, semi-transparent background */
+    background: #64919e;
     border-radius: 15px;
     padding: 40px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Slightly darker shadow */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     text-align: center;
-    cursor: pointer; /* Change cursor style over the entire wrapper */
-    transition: all 0.3s ease;
 }
 
 .wrapper h1 {
     font-size: 36px;
     margin-bottom: 10px;
-    color: #ffffff; /* Bright white text for contrast */
+    color: #ffffff;
     font-weight: 700;
-    cursor: default; /* Keep default cursor for text */
 }
 
 .wrapper h2 {
     font-size: 22px;
     margin-bottom: 30px;
-    color: #ffffff; /* Bright white text */
+    color: #ffffff;
     font-weight: 400;
-    cursor: default; /* Keep default cursor for text */
 }
 
 .input-box {
@@ -49,27 +46,19 @@ body {
     border: none;
     border-radius: 25px;
     font-size: 16px;
-    color: #ffffff; /* White text for inputs */
-    caret-color: #ffffff; /* White text cursor (caret) */
+    color: #ffffff;
     outline: none;
     transition: all 0.3s ease;
-    cursor: text; /* Text cursor for input fields */
 }
 
 .input-box input:focus {
     background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    caret-color: #ffffff; /* Ensure white caret on focus */
-}
-
-.input-box input::placeholder {
-    color: #e0e0e0; /* Lighter placeholder text */
 }
 
 .input-box .icon {
     position: absolute;
-    left: 20px;
     top: 50%;
+    left: 20px;
     transform: translateY(-50%);
     font-size: 18px;
     color: #ffffff;
@@ -77,159 +66,158 @@ body {
 
 .password-toggle-icon {
     position: absolute;
-    right: 20px;
     top: 50%;
+    right: 20px;
     transform: translateY(-50%);
     cursor: pointer;
-    font-size: 18px;
     color: #ffffff;
 }
 
 .remember-forgot {
     display: flex;
     justify-content: space-between;
-    font-size: 14.5px;
     margin-bottom: 30px;
-    cursor: pointer; /* Pointer cursor for this section */
-}
-
-.remember-forgot label {
-    display: flex;
-    align-items: center;
     color: #ffffff;
-}
-
-.remember-forgot input[type="checkbox"] {
-    margin-right: 10px;
-    cursor: pointer; /* Pointer cursor for checkbox */
 }
 
 .remember-forgot a {
-    color: #ffffff;
+    color: #caf0f8;
     text-decoration: none;
-    cursor: pointer; /* Pointer cursor for links */
 }
 
 .remember-forgot a:hover {
     text-decoration: underline;
 }
 
-.wrapper button {
+button {
     width: 100%;
     height: 50px;
-    background: linear-gradient(135deg, #64919e 0%, #64919e 100%);
+    background: #caf0f8;
     border: none;
     border-radius: 25px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    color: #333;
     font-size: 18px;
-    font-weight: 700;
-    cursor: pointer; /* Pointer cursor for the button */
+    color: #293231;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.wrapper button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+button:hover {
+    background: #caf0f8;
+    opacity: 0.9;
 }
 
-.register-link {
-    font-size: 14.5px;
-    color: #ffffff;
+.register-link p {
     margin-top: 20px;
-    cursor: pointer; /* Pointer cursor for links */
-}
-
-.register-link p a {
     color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
 }
 
-.register-link p a:hover {
+.register-link a {
+    color: #caf0f8;
+    text-decoration: none;
+}
+
+.register-link a:hover {
     text-decoration: underline;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .wrapper {
-        width: 100%;
-        max-width: 500px;
-        padding: 30px;
-    }
+/* Popup Styles */
+/* Popup Styles */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Darker background for a sleek look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure the popup appears above all other elements */
+}
 
-    .wrapper h1 {
-        font-size: 30px;
-    }
+.popup {
+    width: 350px;
+    background: linear-gradient(135deg, #CAF0F8 0%, #8ecae6 100%); /* Smooth gradient */
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    position: relative;
+}
 
-    .wrapper h2 {
-        font-size: 20px;
-    }
+.popup h3 {
+    margin-bottom: 25px;
+    font-size: 22px;
+    color: #023047; /* Deep blue for contrast */
+    font-weight: 600;
+}
 
-    .input-box input {
-        height: 45px;
-        padding-left: 45px;
-    }
+.popup input {
+    width: 100%;
+    height: 45px;
+    margin-bottom: 25px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.8); /* Light, semi-transparent input fields */
+    font-size: 16px;
+    color: #023047; /* Dark text color */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for inputs */
+    outline: none;
+    transition: all 0.3s ease;
+}
 
-    .input-box .icon {
-        font-size: 16px;
-    }
+.popup input:focus {
+    background: rgba(255, 255, 255, 1); /* Fully opaque on focus */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Slightly darker shadow on focus */
+}
 
-    .password-toggle-icon {
-        font-size: 16px;
-    }
+.popup button {
+    width: 100%;
+    height: 45px;
+    background: #023047; /* Deep blue background */
+    color: #ffffff; /* White text color */
+    border: none;
+    border-radius: 25px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Slight shadow on button */
+}
 
-    .wrapper button {
-        height: 45px;
-        font-size: 16px;
+.popup button:hover {
+    background: #03506f; /* Slightly lighter blue on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+}
+
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 18px;
+    color: #023047;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+    color: #03506f; /* Slight color change on hover */
+}
+
+/* Animation */
+@keyframes popup-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@media (max-width: 480px) {
-    .wrapper {
-        padding: 20px;
-    }
-
-    .wrapper h1 {
-        font-size: 28px;
-    }
-
-    .wrapper h2 {
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
-
-    .input-box {
-        margin-bottom: 20px;
-    }
-
-    .input-box input {
-        height: 40px;
-        padding-left: 40px;
-    }
-
-    .input-box .icon {
-        font-size: 14px;
-        left: 15px;
-    }
-
-    .password-toggle-icon {
-        font-size: 14px;
-        right: 15px;
-    }
-
-    .remember-forgot {
-        font-size: 13px;
-        margin-bottom: 20px;
-    }
-
-    .wrapper button {
-        height: 40px;
-        font-size: 15px;
-    }
-
-    .register-link {
-        font-size: 13px;
-        margin-top: 15px;
-    }
+.popup {
+    animation: popup-appear 0.5s ease;
 }

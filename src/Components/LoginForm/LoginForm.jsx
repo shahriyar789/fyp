@@ -1,45 +1,70 @@
 import React, { useState } from 'react';
-import './LoginForm.css';
+import './LoginRegisterForm.css';
+import EmailPopup from './EmailPopup';
+import OTPPopup from './OTPPopup';
+import NewPasswordPopup from './NewPasswordPopup';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 function LoginForm() {
-  const [email, setEmail] = useState('');  // Ensure this is an empty string
-  const [password, setPassword] = useState('');  // Ensure this is an empty string
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isEmailPopupOpen, setIsEmailPopupOpen] = useState(false);
+  const [isOTPPopupOpen, setIsOTPPopupOpen] = useState(false);
+  const [isNewPasswordPopupOpen, setIsNewPasswordPopupOpen] = useState(false);
 
-  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (rememberMe) {
       localStorage.setItem('rememberedEmail', email);
     } else {
       localStorage.removeItem('rememberedEmail');
     }
-
-    // Handle login logic here
     console.log('Logging in with:', { email, password });
   };
 
-  // Function to toggle password visibility
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const openEmailPopup = () => {
+    setIsEmailPopupOpen(true);
+  };
+
+  const closeEmailPopup = () => {
+    setIsEmailPopupOpen(false);
+  };
+
+  const openOTPPopup = () => {
+    setIsOTPPopupOpen(true);
+  };
+
+  const closeOTPPopup = () => {
+    setIsOTPPopupOpen(false);
+  };
+
+  const openNewPasswordPopup = () => {
+    setIsNewPasswordPopupOpen(true);
+  };
+
+  const closeNewPasswordPopup = () => {
+    setIsNewPasswordPopupOpen(false);
   };
 
   return (
     <div className='wrapper login-container'>
       <h1>Welcome Back!</h1>
-      <form onSubmit={handleSubmit} autocomplete="off">
+      <form onSubmit={handleSubmit} autoComplete="off">
         <h2>Login to Your Account</h2>
         <div className="input-box">
           <input
             type="email"
             placeholder="Email"
-            value={email}  // This should be an empty string by default
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            autocomplete="off"  // Optional: discourages browser autofill
+            autoComplete="off"
           />
           <FaEnvelope className='icon' />
         </div>
@@ -47,10 +72,10 @@ function LoginForm() {
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
-            value={password}  // This should be an empty string by default
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            autocomplete="off"  // Optional: discourages browser autofill
+            autoComplete="off"
           />
           <FaLock className='icon' />
           <span onClick={togglePasswordVisibility} className='password-toggle-icon'>
@@ -66,13 +91,17 @@ function LoginForm() {
             />
             Remember me
           </label>
-          <a href="/">Forgot password?</a>
+          <a href="#!" onClick={openEmailPopup}>Forgot password?</a>
         </div>
         <button type='submit'>Login</button>
         <div className="register-link">
           <p>Don't have an account? <a href="/">Register</a></p>
         </div>
       </form>
+
+      {isEmailPopupOpen && <EmailPopup onClose={closeEmailPopup} onNext={openOTPPopup} />}
+      {isOTPPopupOpen && <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} />}
+      {isNewPasswordPopupOpen && <NewPasswordPopup onClose={closeNewPasswordPopup} />}
     </div>
   );
 }

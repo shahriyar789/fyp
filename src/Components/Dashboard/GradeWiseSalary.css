@@ -4,8 +4,9 @@
   margin: 37px;
   padding: 15px;
   background-color: #f1f4f5;
+  box-shadow: 0 2px 4px #64919e;
   height: 390px; /* Increased height for better fit */
-  width: 735px; /* Increased width for better fit */
+  width: 740px; /* Increased width for better fit */
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Space out elements */

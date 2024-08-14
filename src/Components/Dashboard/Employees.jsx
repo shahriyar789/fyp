@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Employees.css';
 // import GradeWiseSalary from './GradeWiseSalary';
-// import GenerateSalary from './GenerateSalary';
 import NotificationsAndAlerts from './NotificationsAndAlerts';
 
 const StatsDashboard = () => {

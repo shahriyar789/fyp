@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Navbar.css';
-import { FaSignInAlt, FaUserPlus } from 'react-icons/fa'; // Import icons
+import { FaSignInAlt, FaUserPlus, FaSearch } from 'react-icons/fa'; // Import FaSearch icon
 
 export default function Navbar(props) {
   return (
@@ -15,19 +15,19 @@ export default function Navbar(props) {
           <div className="mx-auto">
             <form className="d-flex" role="search">
               <div className="position-relative mx-auto" style={{ width: '500px' }}>
+                <FaSearch className="search-icon" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#888' }} />
                 <input
                   className="form-control me-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
-                  style={{ fontSize: '1.2rem', paddingRight: '2rem', width: '100%' }} // Increased font size of the input
+                  style={{ fontSize: '1.2rem', paddingLeft: '2.5rem', width: '100%' }} // Increased font size of the input, padding adjusted for icon
                 />
-                <span className="search-emoji">🔍</span>
               </div>
               <button
                 className="btn btn-outline-primary"
                 type="submit"
-                style={{ fontSize: '0.85rem', padding: '0.25rem 0.5rem',width:'100px' }} // Decreased font size and padding of the button
+                style={{ fontSize: '0.85rem', padding: '0.25rem 0.5rem', width: '100px' }} // Decreased font size and padding of the button
               >
                 Search
               </button>

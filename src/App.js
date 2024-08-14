@@ -1,27 +1,32 @@
 import './App.css';
 // index.js or App.js
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import LoginForm from './Components/LoginForm/LoginForm';
-import Register from './Components/LoginForm/Register'
-// import Navbar from './Components/Navbar';
-// import Sidebar from './Components/Sidebar';
-// import Attendance from './Components/Attendance/Attendance'
-// import AdminPage from './Components/Administration/AdminPage'
-// import Employee from './Components/Dashboard/Employees'
-// import GradeWiseSalary from './Components/Dashboard/GradeWiseSalary';
-// import EmployeeGrades from './Components/Dashboard/EmployeeGrades';
+
+// import Register from './Components/LoginForm/Register'
+
+import Navbar from './Components/Navbar';
+import Sidebar from './Components/Sidebar';
+
+import Employee from './Components/Dashboard/Employees'
+import GradeWiseSalary from './Components/Dashboard/GradeWiseSalary';
+import EmployeeGrades from './Components/Dashboard/EmployeeGrades';
+
+
+// import EmployeeDetails from './Components/Employee/EmployeeDetails';
+
 //  import GenerateSalary from './Components/Payroll/GenerateSalary'
 //  import SalaryList from './Components/Payroll/SalaryList';
 // import SalaryDetails from './Components/Payroll/SalaryDetails';
+// import AdminPage from './Components/Administration/AdminPage'
 // import PayrollDashboard from './Components/Payroll/PayrollDashboard';
+// import Attendance from './Components/Attendance/Attendance'
 // import IncentivesAndBonusesDetails from './Components/Payroll/IncentivesAndBonusesDetails';
 // import Report from './Components/Report';
-// import EmployeeDetails from './Components/Employee/EmployeeDetails';
 // import ShadowContainer from './Components/Employee/ShadowContainer';
-// import AddDepartmentButton from './Components/Employee/AddDepartment';
 // import Settings from './components/Settings/Settings';
 
+// import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 // import AdminPage from './Components/Administration/AdminPage';
 // import DepartmentList from './Components/Administration/DepartmentManagement/DepartmentList';
@@ -31,33 +36,43 @@ import Register from './Components/LoginForm/Register'
 // import DeductionList from './Components/Administration/Deduction/DeductionList';
 
 
-// const gradesData = [
-//     { numberOfEmployees: 10 },
-//     { numberOfEmployees: 15 },
-//     { numberOfEmployees: 20 },
-//     { numberOfEmployees: 25 },
-//     { numberOfEmployees: 30 },
-//     { numberOfEmployees: 35 },
-//     { numberOfEmployees: 40 },
-//     { numberOfEmployees: 45 },
-//     { numberOfEmployees: 50 }
-// ]
-// import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+const gradesData = [
+    { numberOfEmployees: 10 },
+    { numberOfEmployees: 15 },
+    { numberOfEmployees: 20 },
+    { numberOfEmployees: 25 },
+    { numberOfEmployees: 30 },
+    { numberOfEmployees: 35 },
+    { numberOfEmployees: 40 },
+    { numberOfEmployees: 45 },
+    { numberOfEmployees: 50 }
+]
 
 function App() {
   return (
 <>
 
-   {/* <Sidebar/> */}
+  {/* <LoginForm/>   */}
+   {/* <Register/>   */}
 
-   {/* <Navbar title='PAYROLL'/> */}
-{/* <Attendance/> */}
-{/* <Employee/>
+   <Navbar title='PAYROLL'/>
+   <Sidebar/>
+ 
+ {/* //Dashboard */}
 
-<GradeWiseSalary/>  
-<div className="app">
-            <EmployeeGrades gradesData={gradesData} />
-        </div> */}
+ 
+  <Employee/>
+  <GradeWiseSalary/>  
+  <div className="app">
+   <EmployeeGrades gradesData={gradesData} />
+  </div> 
+
+{/* 
+
+<EmployeeDetails/>  */}
+
+
+
 
 {/* <Router>
       <div className="app-container">
@@ -86,10 +101,11 @@ function App() {
 
 
 
-{/* <AddDepartmentButton/>  */}
- {/* <ShadowContainer/>  */}
-{/* <EmployeeDetails/> */}
 
+ 
+
+
+        {/* <Attendance/> */}
 
 
 
@@ -97,8 +113,6 @@ function App() {
 
 {/* <Nav/> */}
 {/* <Report/> */}
-  {/* <LoginForm/>   */}
-   <Register/>  
 </>
   );
 }
