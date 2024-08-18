@@ -52,7 +52,7 @@ body {
 }
 
 .input-box input:focus {
-    background: rgba(255, 255, 255, 0.3);
+    background: #8ecae6;
 }
 
 .input-box .icon {
@@ -81,7 +81,7 @@ body {
 }
 
 .remember-forgot a {
-    color: #caf0f8;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -102,7 +102,7 @@ button {
 }
 
 button:hover {
-    background: #caf0f8;
+    background: #98e1eb;
     opacity: 0.9;
 }
 
@@ -120,7 +120,20 @@ button:hover {
     text-decoration: underline;
 }
 
-/* Popup Styles */
+/* Placeholder Styles */
+::placeholder {
+    color: #ffffff;
+    opacity: 0.7;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #ffffff;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #ffffff;
+}
+
 /* Popup Styles */
 .popup-container {
     position: fixed;

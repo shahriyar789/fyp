@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 function OTPPopup({ onClose, onNext }) {
-  const [otp, setOtp] = useState('');
+  const otpRef = useRef(null);
 
-  const handleOtpSubmit = (e) => {
+  useEffect(() => {
+    otpRef.current.focus();
+  }, []);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate OTP verification and proceed to new password step
-    console.log('OTP entered:', otp);
-    onNext(); // Move to new password step
+    // Validate OTP here
+    onNext(); // Proceed to New Password popup
   };
 
   return (
     <div className="popup-container">
       <div className="popup">
-        <h3>Enter OTP</h3>
-        <form onSubmit={handleOtpSubmit}>
-          <input
-            type="text"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            required
-          />
+        <h2>Enter OTP</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Enter OTP" ref={otpRef} required />
           <button type="submit">Submit</button>
         </form>
         <button onClick={onClose}>Close</button>

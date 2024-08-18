@@ -7,8 +7,8 @@ import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 
 function LoginForm() {
-  const [email, setEmail] = useState(""); // Ensure this is an empty string
-  const [password, setPassword] = useState(""); // Ensure this is an empty string
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
@@ -16,41 +16,10 @@ function LoginForm() {
   const [isOTPPopupOpen, setIsOTPPopupOpen] = useState(false);
   const [isNewPasswordPopupOpen, setIsNewPasswordPopupOpen] = useState(false);
 
-  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (rememberMe) {
-      localStorage.setItem("rememberedEmail", email);
-    } else {
-      localStorage.removeItem("rememberedEmail");
-    }
-    
-    try {
-      const res = await axios.post("/auth/login", { email, password });
-      console.log(res.data);
-    } catch (error) {
-      setEmail("");
-      setPassword("")
-      if (error.response && error.response.data) {
-        const errorData = error.response.data;
-        if (errorData.field) {
-          setErrors({ [errorData.field]: errorData.message });
-        }
-      }
-    }
+    console.log('Logging in with:', { email, password });
   };
-
-  useEffect(() => {
-    if (email) {
-      setErrors(prevErrors => ({ ...prevErrors, email: "" }));
-    }
-  }, [email]);
-
-  useEffect(() => {
-    if (password) {
-      setErrors(prevErrors => ({ ...prevErrors, password: "" }));
-    }
-  }, [password]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -62,26 +31,37 @@ function LoginForm() {
 
   const closeEmailPopup = () => {
     setIsEmailPopupOpen(false);
+    // Navigate back to login page when the email popup is closed
   };
 
   const openOTPPopup = () => {
+    setIsEmailPopupOpen(false);
     setIsOTPPopupOpen(true);
   };
 
   const closeOTPPopup = () => {
     setIsOTPPopupOpen(false);
+    // Navigate back to login page when the OTP popup is closed
   };
 
   const openNewPasswordPopup = () => {
+    setIsOTPPopupOpen(false);
     setIsNewPasswordPopupOpen(true);
   };
 
   const closeNewPasswordPopup = () => {
     setIsNewPasswordPopupOpen(false);
+    // Navigate back to login page when the New Password popup is closed
+  };
+
+  const handlePasswordUpdate = () => {
+    setIsNewPasswordPopupOpen(false);
+    alert('Password updated successfully!');
+    // Navigate back to login page after successful password update
   };
 
   return (
-    <div className="wrapper login-container">
+    <div className='wrapper login-container'>
       <h1>Welcome Back!</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
         <h2>Login to Your Account</h2>
@@ -90,28 +70,25 @@ function LoginForm() {
           <input
             type="email"
             placeholder="Email"
-            value={email} // This should be an empty string by default
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            autocomplete="off" // Optional: discourages browser autofill
+            autoComplete="off"
           />
-          <FaEnvelope className="icon" />
+          <FaEnvelope className='icon' />
         </div>
         {errors.password && <p className="error-message">{errors.password}</p>}
         <div className="input-box">
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
-            value={password} // This should be an empty string by default
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            autocomplete="off" // Optional: discourages browser autofill
+            autoComplete="off"
           />
-          <FaLock className="icon" />
-          <span
-            onClick={togglePasswordVisibility}
-            className="password-toggle-icon"
-          >
+          <FaLock className='icon' />
+          <span onClick={togglePasswordVisibility} className='password-toggle-icon'>
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
@@ -128,11 +105,9 @@ function LoginForm() {
             Forgot password?
           </a>
         </div>
-        <button type="submit">Login</button>
+        <button type='submit'>Login</button>
         <div className="register-link">
-          <p>
-            Don't have an account? <a href="/">Register</a>
-          </p>
+          <p>Don't have an account? <a href="/">Register</a></p>
         </div>
       </form>
 
@@ -143,7 +118,7 @@ function LoginForm() {
         <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} />
       )}
       {isNewPasswordPopupOpen && (
-        <NewPasswordPopup onClose={closeNewPasswordPopup} />
+        <NewPasswordPopup onClose={closeNewPasswordPopup} onPasswordUpdate={handlePasswordUpdate} />
       )}
     </div>
   );

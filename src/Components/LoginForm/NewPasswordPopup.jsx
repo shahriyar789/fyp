@@ -1,37 +1,33 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 
-function NewPasswordPopup({ onClose }) {
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+function NewPasswordPopup({ onClose, onPasswordUpdate }) {
+  const newPasswordRef = useRef(null);
 
-  const handlePasswordSubmit = (e) => {
+  useEffect(() => {
+    newPasswordRef.current.focus();
+  }, []);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (newPassword === confirmPassword) {
-      // Simulate password update
-      console.log('New password:', newPassword);
-      onClose(); // Close the popup after setting the new password
-    } else {
-      alert('Passwords do not match!');
-    }
+    const newPassword = newPasswordRef.current.value;
+    console.log('New password set:', newPassword);
+    onPasswordUpdate(); // Handle password update and close the popup
   };
 
   return (
     <div className="popup-container">
       <div className="popup">
-        <h3>Create New Password</h3>
-        <form onSubmit={handlePasswordSubmit}>
+        <h2>Set New Password</h2>
+        <form onSubmit={handleSubmit}>
           <input
             type="password"
-            placeholder="New password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            placeholder="Enter new password"
+            ref={newPasswordRef}
             required
           />
           <input
             type="password"
             placeholder="Confirm new password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
           <button type="submit">Submit</button>

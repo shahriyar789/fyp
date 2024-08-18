@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 function EmailPopup({ onClose, onNext }) {
-  const [email, setEmail] = useState('');
+  const emailRef = useRef(null);
 
-  const handleEmailSubmit = (e) => {
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate email verification and proceed to OTP step
-    console.log('Email entered:', email);
-    onNext(); // Move to OTP step
+    // Validate email here
+    onNext(); // Proceed to OTP popup
   };
 
   return (
     <div className="popup-container">
       <div className="popup">
-        <h3>Enter Your Email</h3>
-        <form onSubmit={handleEmailSubmit}>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+        <h2>Enter your email</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="email" placeholder="Enter your email" ref={emailRef} required />
           <button type="submit">Submit</button>
         </form>
         <button onClick={onClose}>Close</button>
