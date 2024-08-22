@@ -7,8 +7,8 @@ import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
@@ -18,8 +18,40 @@ function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Logging in with:', { email, password });
+    if (rememberMe) {
+      localStorage.setItem("rememberedEmail", email);
+    } else {
+      localStorage.removeItem("rememberedEmail");
+    }
+
+    try {
+      const res = await axios.post("/auth/login", { email, password });
+      console.log(res.data);
+    } catch (error) {
+      setEmail("");
+      setPassword("");
+      if (error.response && error.response.data) {
+        const errorData = error.response.data;
+        if (errorData.field) {
+          setErrors({ [errorData.field]: errorData.message });
+        }
+      }
+    }
+
+    console.log("Logging in with:", { email, password });
   };
+
+  useEffect(() => {
+    if (email) {
+      setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (password) {
+      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+    }
+  }, [password]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -56,16 +88,16 @@ function LoginForm() {
 
   const handlePasswordUpdate = () => {
     setIsNewPasswordPopupOpen(false);
-    alert('Password updated successfully!');
+    alert("Password updated successfully!");
     // Navigate back to login page after successful password update
   };
 
   return (
-    <div className='wrapper login-container'>
+    <div className="wrapper login-container">
       <h1>Welcome Back!</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
         <h2>Login to Your Account</h2>
-          {errors.email && <p className="error-message">{errors.email}</p>}
+        {errors.email && <p className="error-message">{errors.email}</p>}
         <div className="input-box">
           <input
             type="email"
@@ -75,7 +107,7 @@ function LoginForm() {
             required
             autoComplete="off"
           />
-          <FaEnvelope className='icon' />
+          <FaEnvelope className="icon" />
         </div>
         {errors.password && <p className="error-message">{errors.password}</p>}
         <div className="input-box">
@@ -87,8 +119,11 @@ function LoginForm() {
             required
             autoComplete="off"
           />
-          <FaLock className='icon' />
-          <span onClick={togglePasswordVisibility} className='password-toggle-icon'>
+          <FaLock className="icon" />
+          <span
+            onClick={togglePasswordVisibility}
+            className="password-toggle-icon"
+          >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
@@ -105,9 +140,11 @@ function LoginForm() {
             Forgot password?
           </a>
         </div>
-        <button type='submit'>Login</button>
+        <button type="submit">Login</button>
         <div className="register-link">
-          <p>Don't have an account? <a href="/">Register</a></p>
+          <p>
+            Don't have an account? <a href="/">Register</a>
+          </p>
         </div>
       </form>
 
@@ -118,7 +155,10 @@ function LoginForm() {
         <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} />
       )}
       {isNewPasswordPopupOpen && (
-        <NewPasswordPopup onClose={closeNewPasswordPopup} onPasswordUpdate={handlePasswordUpdate} />
+        <NewPasswordPopup
+          onClose={closeNewPasswordPopup}
+          onPasswordUpdate={handlePasswordUpdate}
+        />
       )}
     </div>
   );

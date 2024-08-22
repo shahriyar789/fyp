@@ -1,9 +1,9 @@
 import './App.css';
 // index.js or App.js
 
-// import LoginForm from './Components/LoginForm/LoginForm';
+import LoginForm from './Components/LoginForm/LoginForm';
 
-import Register from './Components/LoginForm/Register'
+// import Register from './Components/LoginForm/Register'
 
 // import Navbar from './Components/Navbar';
 // import Sidebar from './Components/Sidebar';
@@ -52,8 +52,8 @@ function App() {
   return (
 <>
 
-  {/* <LoginForm/>   */}
-   <Register/>  
+  <LoginForm/>  
+   {/* <Register/>   */}
 {/* 
    <Navbar title='PAYROLL'/>
    <Sidebar/>
