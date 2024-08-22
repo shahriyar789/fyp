@@ -22,8 +22,13 @@ body {
 .wrapper h1 {
     font-size: 36px;
     margin-bottom: 10px;
-    color: #ffffff;
     font-weight: 700;
+    color: #ffffff; /* Base color */
+    background: linear-gradient(180deg, #ffffff 40%, #d1f0f4 100%);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Required to make the gradient visible */
 }
 
 .wrapper h2 {
@@ -81,7 +86,7 @@ body {
 }
 
 .remember-forgot a {
-    color: #ffffff;
+    color: rgb(152, 250, 234);
     text-decoration: none;
 }
 
@@ -112,7 +117,8 @@ button:hover {
 }
 
 .register-link a {
-    color: #caf0f8;
+    color:  #81f8e4;
+    transition: color 0.3s ease;
     text-decoration: none;
 }
 
@@ -121,18 +127,11 @@ button:hover {
 }
 
 /* Placeholder Styles */
-::placeholder {
-    color: #ffffff;
-    opacity: 0.7;
+.input-box input::placeholder {
+    color: #ffffff; /* White color for better visibility */
+    opacity: 1.9; /* Adjust opacity if needed */
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #ffffff;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: #ffffff;
-}
 
 /* Popup Styles */
 .popup-container {
@@ -239,4 +238,4 @@ button:hover {
     color: rgb(225, 20, 20);
     margin-top: 5px;
     font-size: 0.875rem; 
-}
+}                 

@@ -1,30 +1,53 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import './OTPPopup.css';
+import { FaCheckCircle } from 'react-icons/fa'; // Font Awesome check circle icon
 
-function OTPPopup({ onClose, onNext }) {
-  const otpRef = useRef(null);
+const OTPPopup = ({ onClose }) => {
+    const [otp, setOtp] = useState(['', '', '', '', '', '']);
 
-  useEffect(() => {
-    otpRef.current.focus();
-  }, []);
+    const handleChange = (e, index) => {
+        const { value } = e.target;
+        if (/^\d*$/.test(value)) {
+            setOtp(otp.map((digit, i) => (i === index ? value : digit)));
+            if (index < otp.length - 1 && value !== '') {
+                document.getElementById(`otp-${index + 1}`).focus();
+            }
+        }
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Validate OTP here
-    onNext(); // Proceed to New Password popup
-  };
+    const handleVerify = () => {
+        // Handle OTP verification logic here
+        alert('OTP Verified!');
+    };
 
-  return (
-    <div className="popup-container">
-      <div className="popup">
-        <h2>Enter OTP</h2>
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Enter OTP" ref={otpRef} required />
-          <button type="submit">Submit</button>
-        </form>
-        <button onClick={onClose}>Close</button>
-      </div>
-    </div>
-  );
-}
+    return (
+        <div className="otp-popup">
+            <div className="otp-popup-content">
+                <div className="otp-heading">Verify Your Account</div>
+                <div className="otp-icon">
+                    <FaCheckCircle size={50} color="#fff" />
+                </div>
+                <div className="otp-inputs">
+                    {otp.map((digit, index) => (
+                        <input
+                            key={index}
+                            id={`otp-${index}`}
+                            type="text"
+                            maxLength="1"
+                            value={digit}
+                            onChange={(e) => handleChange(e, index)}
+                            className="otp-input"
+                        />
+                    ))}
+                </div>
+                <button className="verify-btn" onClick={handleVerify}>Verify OTP</button>
+                <div className="go-back">
+                    <span>Go back to sign in ? </span>
+                    <a href="/sign-in" className="sign-in-link">Sign In</a>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default OTPPopup;
