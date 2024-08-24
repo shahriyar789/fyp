@@ -15,6 +15,7 @@ function LoginForm() {
   const [isEmailPopupOpen, setIsEmailPopupOpen] = useState(false);
   const [isOTPPopupOpen, setIsOTPPopupOpen] = useState(false);
   const [isNewPasswordPopupOpen, setIsNewPasswordPopupOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +67,8 @@ function LoginForm() {
     // Navigate back to login page when the email popup is closed
   };
 
-  const openOTPPopup = () => {
+  const openOTPPopup = (message) => {
+    setMessage(message);
     setIsEmailPopupOpen(false);
     setIsOTPPopupOpen(true);
   };
@@ -86,9 +88,13 @@ function LoginForm() {
     // Navigate back to login page when the New Password popup is closed
   };
 
-  const handlePasswordUpdate = () => {
+  const handlePasswordUpdate = (error, message) => {
     setIsNewPasswordPopupOpen(false);
-    alert("Password updated successfully!");
+    if (error) {
+      alert(error);
+    } else if (message) {
+      alert(message);
+    }
     // Navigate back to login page after successful password update
   };
 
@@ -152,7 +158,7 @@ function LoginForm() {
         <EmailPopup onClose={closeEmailPopup} onNext={openOTPPopup} />
       )}
       {isOTPPopupOpen && (
-        <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} />
+        <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} message={message} />
       )}
       {isNewPasswordPopupOpen && (
         <NewPasswordPopup

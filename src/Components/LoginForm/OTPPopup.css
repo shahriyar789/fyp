@@ -96,3 +96,15 @@
 .sign-in-link:hover {
     text-decoration: underline;
 }
+
+.error-message {
+    color: rgb(225, 20, 20);
+    margin-top: 5px;
+    font-size: 0.875rem; 
+}
+
+.success-message {
+    color: white;
+    margin-top: 5px;
+    font-size: 0.875rem; 
+}
