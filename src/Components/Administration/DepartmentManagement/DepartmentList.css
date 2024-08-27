@@ -1,16 +1,14 @@
 .department-list-container {
   padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: auto;
+  position: fixed;
+  top: 90px;
+  left: 190px;
+  border: 2px solid #008CBA;
 }
 
-.department-list-container h2 {
+h2 {
+  text-align: center;
   margin-bottom: 20px;
-  font-size: 24px;
-  color: #2c3e50;
 }
 
 .department-table {
@@ -19,21 +17,14 @@
   margin-bottom: 20px;
 }
 
-.department-table th,
-.department-table td {
-  padding: 12px 15px;
+.department-table th, .department-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
   text-align: left;
-  border-bottom: 1px solid #ecf0f1;
 }
 
 .department-table th {
-  background-color: #3498db;
-  color: white;
-  font-size: 16px;
-}
-
-.department-table tr:hover {
-  background-color: #f5f5f5;
+  background-color: #f4f4f4;
 }
 
 .department-actions {
@@ -43,30 +34,28 @@
 
 .edit-button, .delete-button {
   padding: 5px 10px;
-  font-size: 14px;
+  text-decoration: none;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 
 .edit-button {
-  background-color: #3498db;
+  background-color: #4CAF50;
   color: white;
-  text-decoration: none;
 }
 
 .delete-button {
-  background-color: #e74c3c;
+  background-color: #f44336;
   color: white;
 }
 
 .add-department-button {
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: #2ecc71;
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #008CBA;
   color: white;
-  border-radius: 5px;
+  text-align: center;
   text-decoration: none;
-  font-size: 16px;
-  margin-top: 20px;
+  border-radius: 5px;
 }

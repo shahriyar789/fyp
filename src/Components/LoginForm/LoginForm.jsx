@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+// import { useNavigate } from 'react-router-dom';
+
+import React, { useState } from "react";
 import "./LoginRegisterForm.css";
 import EmailPopup from "./EmailPopup";
 import OTPPopup from "./OTPPopup";
 import NewPasswordPopup from "./NewPasswordPopup";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 
-function LoginForm() {
+function LoginForm({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -16,9 +19,22 @@ function LoginForm() {
   const [isOTPPopupOpen, setIsOTPPopupOpen] = useState(false);
   const [isNewPasswordPopupOpen, setIsNewPasswordPopupOpen] = useState(false);
 
+  const navigate = useNavigate();  // Initialize the useNavigate hook
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Logging in with:', { email, password });
+
+    try {
+      const response = await axios.post('/api/login', { email, password });
+
+      if (response.data.success) {
+        onLogin();  // Trigger the authentication on success
+      } else {
+        setErrors({ form: 'Invalid email or password' });
+      }
+    } catch (error) {
+      setErrors({ form: 'An error occurred. Please try again.' });
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -31,7 +47,6 @@ function LoginForm() {
 
   const closeEmailPopup = () => {
     setIsEmailPopupOpen(false);
-    // Navigate back to login page when the email popup is closed
   };
 
   const openOTPPopup = () => {
@@ -41,7 +56,6 @@ function LoginForm() {
 
   const closeOTPPopup = () => {
     setIsOTPPopupOpen(false);
-    // Navigate back to login page when the OTP popup is closed
   };
 
   const openNewPasswordPopup = () => {
@@ -51,13 +65,15 @@ function LoginForm() {
 
   const closeNewPasswordPopup = () => {
     setIsNewPasswordPopupOpen(false);
-    // Navigate back to login page when the New Password popup is closed
   };
 
   const handlePasswordUpdate = () => {
     setIsNewPasswordPopupOpen(false);
     alert('Password updated successfully!');
-    // Navigate back to login page after successful password update
+  };
+
+  const navigateToRegister = () => {
+    navigate('/register');  // Navigate to the Register page
   };
 
   return (
@@ -65,7 +81,7 @@ function LoginForm() {
       <h1>Welcome Back!</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
         <h2>Login to Your Account</h2>
-          {errors.email && <p className="error-message">{errors.email}</p>}
+        {errors.form && <p className="error-message">{errors.form}</p>}
         <div className="input-box">
           <input
             type="email"
@@ -77,7 +93,6 @@ function LoginForm() {
           />
           <FaEnvelope className='icon' />
         </div>
-        {errors.password && <p className="error-message">{errors.password}</p>}
         <div className="input-box">
           <input
             type={showPassword ? "text" : "password"}
@@ -107,7 +122,7 @@ function LoginForm() {
         </div>
         <button type='submit'>Login</button>
         <div className="register-link">
-          <p>Don't have an account? <a href="/">Register</a></p>
+          <p>Don't have an account? <a href="#!" onClick={navigateToRegister}>Register</a></p> {/* Add onClick to navigate */}
         </div>
       </form>
 

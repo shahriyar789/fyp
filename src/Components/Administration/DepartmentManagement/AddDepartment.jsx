@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 const AddDepartment = () => {
     const [name, setName] = useState('');
+    const [employees, setEmployees] = useState(0);
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,12 +18,12 @@ const AddDepartment = () => {
         const storedDepartments = JSON.parse(localStorage.getItem('departments')) || [];
         const newDepartment = {
             id: storedDepartments.length ? storedDepartments[storedDepartments.length - 1].id + 1 : 1,
-            name
+            name,
+            employees: parseInt(employees, 10)
         };
         const updatedDepartments = [...storedDepartments, newDepartment];
         localStorage.setItem('departments', JSON.stringify(updatedDepartments));
 
-        // After saving, navigate to the department list
         navigate('/departments');
     };
 
@@ -43,8 +44,19 @@ const AddDepartment = () => {
                         placeholder="Enter department name"
                         required
                     />
-                    {error && <p className="error-message">{error}</p>}
                 </div>
+                <div className="form-group">
+                    <label htmlFor="employeeCount">Number of Employees</label>
+                    <input
+                        type="number"
+                        id="employeeCount"
+                        value={employees}
+                        onChange={(e) => setEmployees(e.target.value)}
+                        placeholder="Enter number of employees"
+                        required
+                    />
+                </div>
+                {error && <p className="error-message">{error}</p>}
                 <button type="submit" className="submit-button">Add Department</button>
                 <button type="button" className="cancel-button" onClick={() => navigate('/departments')}>
                     Cancel

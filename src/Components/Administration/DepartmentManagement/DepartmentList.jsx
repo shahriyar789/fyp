@@ -3,18 +3,11 @@ import './DepartmentList.css';
 import { Link } from 'react-router-dom';
 
 const DepartmentList = () => {
-    const [departments, setDepartments] = useState([
-        { id: 1, name: 'Human Resources', employees: 10 },
-        { id: 2, name: 'Finance', employees: 8 },
-        { id: 3, name: 'Engineering', employees: 25 },
-        { id: 4, name: 'Marketing', employees: 15 }
-    ]);
+    const [departments, setDepartments] = useState([]);
 
     useEffect(() => {
-        const storedDepartments = JSON.parse(localStorage.getItem('departments'));
-        if (storedDepartments) {
-            setDepartments(storedDepartments);
-        }
+        const storedDepartments = JSON.parse(localStorage.getItem('departments')) || [];
+        setDepartments(storedDepartments);
     }, []);
 
     const handleDelete = (id) => {
