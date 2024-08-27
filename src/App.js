@@ -83,12 +83,12 @@
 import './App.css';
 // index.js or App.js
 
-// import LoginForm from './Components/LoginForm/LoginForm';
+import LoginForm from './Components/LoginForm/LoginForm';
 
 // import Register from './Components/LoginForm/Register'
 
-import Navbar from './Components/Navbar';
-import Sidebar from './Components/Sidebar';
+// import Navbar from './Components/Navbar';
+// import Sidebar from './Components/Sidebar';
 
 // import Employee from './Components/Dashboard/Employees'
 // import GradeWiseSalary from './Components/Dashboard/GradeWiseSalary';
@@ -108,14 +108,14 @@ import Sidebar from './Components/Sidebar';
 // import ShadowContainer from './Components/Employee/ShadowContainer';
 // import Settings from './components/Settings/Settings';
 
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
-import AdminPage from './Components/Administration/AdminPage';
-import DepartmentList from './Components/Administration/DepartmentManagement/DepartmentList';
-import AddDepartment from './Components/Administration/DepartmentManagement/AddDepartment';
-import RoleList from './Components/Administration/RoleManagement/RoleList';
-import AllowanceList from './Components/Administration/Allowances/AllowanceList';
-import DeductionList from './Components/Administration/Deduction/DeductionList';
+// import AdminPage from './Components/Administration/AdminPage';
+// import DepartmentList from './Components/Administration/DepartmentManagement/DepartmentList';
+// import AddDepartment from './Components/Administration/DepartmentManagement/AddDepartment';
+// import RoleList from './Components/Administration/RoleManagement/RoleList';
+// import AllowanceList from './Components/Administration/Allowances/AllowanceList';
+// import DeductionList from './Components/Administration/Deduction/DeductionList';
 import UserManagement from './Components/Administration/UserManagement/UserManagement'; 
 
 
@@ -136,12 +136,12 @@ function App() {
   return (
 <>
 
-  {/* <LoginForm/>   */}
-   {/* <Register/>   */}
-
+  <LoginForm/>  
+   {/* {/* <Register/>   */} 
+{/* 
    <Navbar title='PAYROLL'/>
    <Sidebar/>
- 
+  */}
  {/* //Dashboard */}
 
  
@@ -157,9 +157,9 @@ function App() {
 
 
 
-
+{/* 
  <Router>
-      <div className="app-container">
+      <div className="app-container"> */}
       {/* <Route path="/" element={<GenerateSalary />} />
       <Route path="/salary-list" element={<SalaryList />} />
       <Route path="/salary-details/:id" element={<SalaryDetails />} />
@@ -169,21 +169,21 @@ function App() {
            
            
            
-             <Routes>
-                <Route path="/" element={<AdminPage />} />
+             {/* <Routes> */}
+                {/* <Route path="/" element={<AdminPage />} />
                 <Route path="/departments" element={<DepartmentList />} />
-                <Route path="/departments/add" element={<AddDepartment />} />
-                <Route path="/roles" element={<RoleList />} />
-                <Route path="/allowances" element={<AllowanceList />} />
-                <Route path="/deductions" element={<DeductionList />} />
+                <Route path="/departments/add" element={<AddDepartment />} /> */}
+                {/* <Route path="/roles" element={<RoleList />} /> */}
+                {/* <Route path="/allowances" element={<AllowanceList />} /> */}
+                {/* <Route path="/deductions" element={<DeductionList />} /> */}
                 <Route path="/users/*" element={<UserManagement />} />
                  {/* <Route path="/settings" element={<Settings />} />
                 <Route path="*" element={<NotFound />} /> */}
-            </Routes>
+            {/* </Routes> */}
         
-      </div>
+      {/* </div> */}
     
-    </Router> 
+    {/* </Router>  */}
 
 
 

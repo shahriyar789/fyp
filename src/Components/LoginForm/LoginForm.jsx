@@ -10,32 +10,54 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
 
 function LoginForm({ onLogin }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [isEmailPopupOpen, setIsEmailPopupOpen] = useState(false);
   const [isOTPPopupOpen, setIsOTPPopupOpen] = useState(false);
   const [isNewPasswordPopupOpen, setIsNewPasswordPopupOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();  // Initialize the useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (rememberMe) {
+      localStorage.setItem("rememberedEmail", email);
+    } else {
+      localStorage.removeItem("rememberedEmail");
+    }
 
     try {
-      const response = await axios.post('/api/login', { email, password });
-
-      if (response.data.success) {
-        onLogin();  // Trigger the authentication on success
-      } else {
-        setErrors({ form: 'Invalid email or password' });
-      }
+      const res = await axios.post("/auth/login", { email, password });
+      console.log(res.data);
     } catch (error) {
-      setErrors({ form: 'An error occurred. Please try again.' });
+      setEmail("");
+      setPassword("");
+      if (error.response && error.response.data) {
+        const errorData = error.response.data;
+        if (errorData.field) {
+          setErrors({ [errorData.field]: errorData.message });
+        }
+      }
     }
+
+    console.log("Logging in with:", { email, password });
   };
+
+  useEffect(() => {
+    if (email) {
+      setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (password) {
+      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+    }
+  }, [password]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -49,7 +71,8 @@ function LoginForm({ onLogin }) {
     setIsEmailPopupOpen(false);
   };
 
-  const openOTPPopup = () => {
+  const openOTPPopup = (message) => {
+    setMessage(message);
     setIsEmailPopupOpen(false);
     setIsOTPPopupOpen(true);
   };
@@ -67,9 +90,13 @@ function LoginForm({ onLogin }) {
     setIsNewPasswordPopupOpen(false);
   };
 
-  const handlePasswordUpdate = () => {
+  const handlePasswordUpdate = (error, message) => {
     setIsNewPasswordPopupOpen(false);
-    alert('Password updated successfully!');
+    if (error) {
+      alert(error);
+    } else if (message) {
+      alert(message);
+    }
   };
 
   const navigateToRegister = () => {
@@ -77,11 +104,11 @@ function LoginForm({ onLogin }) {
   };
 
   return (
-    <div className='wrapper login-container'>
+    <div className="wrapper login-container">
       <h1>Welcome Back!</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
         <h2>Login to Your Account</h2>
-        {errors.form && <p className="error-message">{errors.form}</p>}
+        {errors.email && <p className="error-message">{errors.email}</p>}
         <div className="input-box">
           <input
             type="email"
@@ -91,7 +118,7 @@ function LoginForm({ onLogin }) {
             required
             autoComplete="off"
           />
-          <FaEnvelope className='icon' />
+          <FaEnvelope className="icon" />
         </div>
         <div className="input-box">
           <input
@@ -102,8 +129,11 @@ function LoginForm({ onLogin }) {
             required
             autoComplete="off"
           />
-          <FaLock className='icon' />
-          <span onClick={togglePasswordVisibility} className='password-toggle-icon'>
+          <FaLock className="icon" />
+          <span
+            onClick={togglePasswordVisibility}
+            className="password-toggle-icon"
+          >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
@@ -120,9 +150,11 @@ function LoginForm({ onLogin }) {
             Forgot password?
           </a>
         </div>
-        <button type='submit'>Login</button>
+        <button type="submit">Login</button>
         <div className="register-link">
-          <p>Don't have an account? <a href="#!" onClick={navigateToRegister}>Register</a></p> {/* Add onClick to navigate */}
+          <p>
+            Don't have an account? <a href="#!" onClick={navigateToRegister}>Register</a>
+          </p> {/* Add onClick to navigate */}
         </div>
       </form>
 
@@ -130,10 +162,13 @@ function LoginForm({ onLogin }) {
         <EmailPopup onClose={closeEmailPopup} onNext={openOTPPopup} />
       )}
       {isOTPPopupOpen && (
-        <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} />
+        <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} message={message} />
       )}
       {isNewPasswordPopupOpen && (
-        <NewPasswordPopup onClose={closeNewPasswordPopup} onPasswordUpdate={handlePasswordUpdate} />
+        <NewPasswordPopup
+          onClose={closeNewPasswordPopup}
+          onPasswordUpdate={handlePasswordUpdate}
+        />
       )}
     </div>
   );
